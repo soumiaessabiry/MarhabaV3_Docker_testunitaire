@@ -20,12 +20,14 @@ const userSchema=mongoose.Schema({
         required:true,
 
     },
-    role:{
+    role:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Roles'
-    },
-    Date_Inscription:{
+    }],
+    Date_inscription:{
         type:Date,
+        default: Date.now,
+
         
     },
     Confirmation_inscription:{
