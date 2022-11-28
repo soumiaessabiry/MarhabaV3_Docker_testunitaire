@@ -24,7 +24,7 @@ const Register=async(req,res)=>{
         email:email
     })
     if (checkUser) {
-        res.send({message:" Oooops user is aready exist !!! "})
+        res.status(400).send({message:" Oooops user is aready exist !!! "})
     }else{ 
     const InsertUser=new Usermodel({
         username:username,
@@ -33,15 +33,18 @@ const Register=async(req,res)=>{
         phone:phone,
         role:role_client
     })
-
-    const saveuser=await  InsertUser.save();
-    try {
-    
-        res.send({message_successRegister:saveuser})
-    } catch (error) {
-        res.send({error_inserUser:"erroor de insert user"})
-    }
-    }
+        if(!username||!email||!password||!phone){
+            res.status(400).send("fill All fields !!!!!!")
+        }else{
+            const saveuser=await  InsertUser.save();
+            try {
+                res.send({message_successRegister:saveuser})
+            } catch (error) {
+                res.send({error})
+            }
+            }
+        }
+   
 }
 const checkroles=(role)=>{
     return jwt.sign({role:role},key)
@@ -58,7 +61,7 @@ const Login=async(req,res,next)=>{
         phone:phone
     })
     if(!userExist){
-        res.send({message:"User Note exist "})
+        res.status(400).send({message:"User Note exist "})
     }else{
         const compaepwd=await bcrypt.compare(password,userExist.password)
         if(compaepwd){
@@ -73,17 +76,19 @@ const Login=async(req,res,next)=>{
                 })
                 .then(e=>{
                     const datausers={username ,email ,phone ,role:e.name,token}
-                    res.json({messagesuccess: datausers})
+                    res.status(200).json({messagesuccess: datausers})
                 
                 })
-                .catch(()=>{res.json({message: 'error '})})
+                .catch(()=>{
+                    res.status(400).json({message: 'error in role '})
+                })
                
                 
             }else{
-                res.send("token erroor")
+                res.status(400).send("token erroor")
             }
         }else{
-            res.send({message_errorlogin:"password or phone inncorect "})
+            res.status(400).json({message_errorlogin:"password or phone inncorect "})
         }
     }
     

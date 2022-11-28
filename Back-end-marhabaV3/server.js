@@ -20,3 +20,5 @@ app.use("/Marhaba/auth/",AuthRoute)
 app.listen(PORT,()=>{
     console.log(`connexion with server success in port ${PORT} `)
 })
+
+module.exports=app
