@@ -23,7 +23,7 @@ useEffect(() => {
 
     return (
         <div className='dashboard'>
-            <h2 style={{ marginBottom: "30px" }}>Welcom {user} {role} </h2>
+            <h2 style={{ marginBottom: "30px" }}>Welcom {user}  </h2>
             <h2 style={{ marginBottom: "30px" }}>Your role is  {role} </h2>
             <h2 style={{ marginBottom: "30px" }}>You phone is  {phone} </h2>
             <button className='signOutBtn' onClick={handleSignOut}>

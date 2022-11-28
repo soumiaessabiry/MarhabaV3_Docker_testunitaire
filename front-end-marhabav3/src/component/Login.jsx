@@ -31,11 +31,10 @@ const Login=()=>{
             if(verficemail!=undefined){
                 setErrmail(true)
             }else{
-                // localStorage.setItem("User",responce.data.messagesuccess.username)
-                // localStorage.setItem("role",responce.data.messagesuccess.role)
-                // localStorage.setItem("phone",responce.data.messagesuccess.phone)
-                // window.location.replace('/dashbord') 
-                console.log(responce)
+                localStorage.setItem("User",responce.data.messagesuccess.username)
+                localStorage.setItem("role",responce.data.messagesuccess.role)
+                localStorage.setItem("phone",responce.data.messagesuccess.phone)
+                window.location.replace('/dashbord') 
 
                 
             }
