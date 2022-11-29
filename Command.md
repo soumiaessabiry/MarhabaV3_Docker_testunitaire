@@ -1,5 +1,23 @@
 
-# #########################  Pour back_end   ##################################
+# #########################   back_end   ##################################
+# #########################  Docker fille   ##################################
+
+    FROM node:16
+
+    WORKDIR /app
+
+    COPY  package*.json ./
+
+    RUN npm install
+
+    COPY . .
+
+    EXPOSE 4011
+
+    CMD [ "npm","start","run" ]
+
+
+# #################  Pour back_end   #################
 
 # 1 Create network livraison-marhaba-net
     docker network create livraison-marhaba-net
@@ -10,7 +28,27 @@
 # 4  Exécutez un container basé sur cette image que vous venez de créer, nommez-le livraison-marhaba et faites-le utiliser avec le network livraison-marhaba-net.
     docker container run -d --name livraison-marhaba-back-end -v ${pwd}:/app -v /app/node_modules --network livraison-marhaba-net -p 4011:4011 livraison-marhaba-backend-docker:test  
 
-# #########################  Pour front-end   ################################## # 
+# #################  Pour front-end   ##################### # 
+# ###############  Docker fille   #################### #
+
+        FROM node:16 
+
+        WORKDIR /appfront
+
+        COPY package.json .
+
+        RUN npm install
+
+        COPY . ./
+
+        EXPOSE 3001
+
+        CMD ["npm" ,"start"]
+
+
+
+
+# ####################  Pour back_end   ####################### #
 
  # 1 Créer un network, et lui donner le nom de livraison-marhaba-frontend-net.
     docker network create  livraison-marhaba-frontend-net
@@ -19,10 +57,21 @@
 # 3 Exécutez un container basé sur cette image que vous venez de créer, nommez-le livraison-marhaba-frontend  et faites-le utiliser avec le network livraison-marhaba-frontend-net.
     docker container run -d --name livraison-marhaba-front-end- -v ${pwd}:/app -v /app/node_modules --network livraison-marhaba-front-end-net -p 3000:3000 livraison-marhaba-front-end-docker:test
 
-# ######################### Pour test unutaire ################################## # 
+# ########### Pour test unutaire ################ # 
+ 
+ # Notion de base sur test
 
+    # Jest : est une  bibliothèque de test créée par Facebook pour aider à tester le code JavaScript, les API Express, les composants React et bien plus encore.
+
+    # SuperTest : est une bibliothèque d'assertions HTTP qui vous permet de tester vos serveurs HTTP Node.js.
+ 
  # 1 Install jest et supertest
-
+    Ajouter dans package.json
+    ========>>>>>>>>
+     "scripts": {
+        "test": "jest"
+    }      
+    ========>>>>>>>>
     npm i -d jest supertest
 
     export app in server.js

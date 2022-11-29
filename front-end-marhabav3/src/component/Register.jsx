@@ -30,7 +30,7 @@ const Submit= async(e)=>{
                 // console.log(responce)
             }else{
                 localStorage.setItem("User",username)
-                window.location.replace('/login') 
+                window.location.replace('/Login') 
                 
             }
         
@@ -43,7 +43,7 @@ const Page_login = () => navigate("/Login");
 
 return(
     <div className='login__container'>
-        <h2>Register </h2>
+        <h2> welcom Register </h2>
         <form className='login__form'  onSubmit={Submit}>
             <label htmlFor='username'>Username</label>
             <input

@@ -11,7 +11,7 @@ const verfytoken=(req,res,next)=>{
     }else{
         const decode=jwt.verify(tokene,key)
         if(decode){
-            res.send({msg:"successsss",decode})
+            res.send({msg:"successsss"})
 
         }
         return res.status(401).json("invalid token")

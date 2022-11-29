@@ -46,9 +46,9 @@ const Register=async(req,res)=>{
         }
    
 }
-const checkroles=(role)=>{
-    return jwt.sign({role:role},key)
-}
+// const tokenrole=(role)=>{
+//     return jwt.sign({role:role},key)
+// }
 
                     //**************login*************** */
 
@@ -65,7 +65,7 @@ const Login=async(req,res,next)=>{
     }else{
         const compaepwd=await bcrypt.compare(password,userExist.password)
         if(compaepwd){
-            let token=checkroles(userExist.role)
+            let token= jwt.sign({role:userExist.role,username:userExist.username,email:userExist.email},key)
             if(token){
                 locltorage('token',token)
                 let username=userExist.username
@@ -80,7 +80,7 @@ const Login=async(req,res,next)=>{
                 
                 })
                 .catch(()=>{
-                    res.status(400).json({message: 'error in role '})
+                    res.json({message: 'error in role '})
                 })
                
                 
@@ -123,5 +123,4 @@ module.exports={
     Login,
     AddRole,
     AllUsers,
-    checkroles
 }

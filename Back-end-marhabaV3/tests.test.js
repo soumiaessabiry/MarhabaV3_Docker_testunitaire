@@ -8,7 +8,7 @@ const app=require("./server")
 //     test("check email is  aready existe",async()=>{
 //         let body={
 //             username:"manager",
-//             email:"managerL@gmail.com",
+//             email:"manager@gmail.com",
 //             password:"123",
 //             phone:"612345678"
 //         }
@@ -18,18 +18,18 @@ const app=require("./server")
 // })
 //*            =>2  fill All fields                                                                                             */ 
 
-describe("fill All fields !!!!!!",()=>{
-    test("fill All fields !!!!!!",async()=>{
-        let body={
-            username:"manager",
-            email:"manager@gmail.com",
-            password:"azerty",
-            phone:"1234567"
-        }
-        const respnse=await supert(app).post("/Marhaba/auth/Register").send(body)
-        expect(respnse.statusCode).toBe(400)
-    })
-})
+// describe("fill All fields !!!!!!",()=>{
+//     test("fill All fields !!!!!!",async()=>{
+//         let body={
+//             username:"manager",
+//             email:"manager@gmail.com",
+//             password:"azerty",
+//             phone:"1234567"
+//         }
+//         const respnse=await supert(app).post("/Marhaba/auth/Register").send(body)
+//         expect(respnse.statusCode).toBe(400)
+//     })
+// })
 
 
        //*********** login************* */
